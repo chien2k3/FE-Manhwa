@@ -1,12 +1,12 @@
 <div class="flex items-center justify-center my-[24px]">
-  <img src="../../../assets/images/vnb_logo_2x.png" alt="" />
+  <img src="https://res.cloudinary.com/dz4cezwre/image/upload/v1700236415/manhwavn_iiwd32.png" alt="" />
 </div>
 <div class="border-b-[1px] shadow-sm shadow-gray-500">
   <div class="w-[1200px] m-auto mb-[100px]">
-    <h1 class="text-center font-[600] text-[24px] text-[#117c47] mb-[24px]">Giỏ hàng</h1>
+    <h1 class="text-center font-[600] text-[24px] text-[#39A7FF] mb-[24px]">Giỏ hàng</h1>
     <div class="flex">
       <div class="flex-1 border-[1px] rounded border-[#ececec] mr-[32px] p-[32px]">
-        <h4 class="text-[20px] text-[#117c47] mb-[24px] font-[500]">Sản phẩm</h4>
+        <h4 class="text-[20px] text-[#39A7FF] mb-[24px] font-[500]">Sản phẩm</h4>
         <div *ngFor="let item of cartList.cartItems" class="flex justify-between mb-[12px]">
           <a routerLink="/product/{{item.bookId._id}}" class="w-[50px] h-[100px]  overflow-hidden">
             <img class="w-full"
@@ -31,7 +31,7 @@
       </div>
       <div>
         <div class="w-[350px] border-[1px] rounded h-[230px] overflow-hidden">
-          <h2 class="text-center py-[8px] text-[16px] text-white bg-[#117c47]">Tóm tắt đơn hàng</h2>
+          <h2 class="text-center py-[8px] text-[16px] text-white bg-[#EC8F5E]">Tóm tắt đơn hàng</h2>
           <div class="p-[24px]">
             <div class="flex justify-between">
               <span>Sản phẩm</span>
@@ -55,7 +55,7 @@
         </div>
         <div>
           <div class="w-[350px] border-[1px] rounded overflow-hidden mt-[32px]">
-            <h2 class="text-center py-[8px] text-[16px] text-white bg-[#117c47]">Thông tin khách hàng</h2>
+            <h2 class="text-center py-[8px] text-[16px] text-white bg-[#EC8F5E]">Thông tin khách hàng</h2>
             <div class="p-[24px]">
               <div class="flex justify-between flex-col">
                 <label class="mr-[12px]">Họ tên</label>
@@ -86,7 +86,7 @@
       <a routerLink="/"><button
           class="min-w-[256px] py-[12px] bg-[#cecdcd] text-white mx-[12px] rounded text-[18px] font-[500]">Quay
           lại</button></a>
-      <button (click)="handleOrder()" class="min-w-[256px] py-[12px] text-white bg-[#fdc92d] mx-[12px] rounded text-[18px] font-[500]">
+      <button (click)="handleOrder()" class="min-w-[256px] py-[12px] text-white bg-[#117c47] mx-[12px] rounded text-[18px] font-[500]">
           Thanh toán</button>
     </div>
   </div>
