@@ -67,13 +67,22 @@
      
     </div>
   </div>
+ 
   <div class="flex items-center">
+ 
     <a
       routerLink="/cart"
       class="mr-[32px] w-[40px] h-[40px] flex items-center justify-center border-[#057a45] border-[1px] rounded-[999px]"
     >
       <fa-icon class="text-[#057a45]" [icon]="cartIcon"></fa-icon>
     </a>
+<!-- Import Font Awesome icon component -->
+    
+<div *ngIf="linkToAdmin === 'admin'">
+  <fa-icon class="text-[#057a45]" [icon]="user"  >
+  </fa-icon>
+  <a class="mx-3" routerLink="/admin">ADMIN |  </a>
+</div>
     <div *ngIf="!isUser" class="text-[18px] font-[300]">
       <span (click)="handleShowSignup()" class="cursor-pointer">Đăng ký</span>
       <span class="mx-[8px]">|</span>

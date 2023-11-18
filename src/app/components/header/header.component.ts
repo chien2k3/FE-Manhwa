@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { faCartShopping, faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faMagnifyingGlass, faXmark, faUser } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,17 +14,26 @@ export class HeaderComponent {
   cartIcon = faCartShopping
   searchIcon = faMagnifyingGlass
   closeIcon = faXmark
-
+  user = faUser
   isShowModal = 0
   isMatch: boolean = false
 
   isUser: any = null;
+  linkToAdmin: string = "";
 
   productList: any = null
 
 
   constructor(private userService: UserService, private productService: ProductService, private toastr: ToastrService, private formBuilder: FormBuilder) {
-    this.isUser = JSON.parse(localStorage.getItem("user") as string) || null
+    this.isUser = JSON.parse(localStorage.getItem("user") as string) || null;
+    this.initializeUserData();
+  }
+  private initializeUserData() {
+    if (this.isUser) {
+      // Thực hiện các hành động cần thiết với dữ liệu người dùng
+      this.linkToAdmin = this.isUser.data.role
+
+    }
   }
 
   formValueSearch = this.formBuilder.group({
@@ -75,7 +84,11 @@ export class HeaderComponent {
           this.isMatch = false
           this.isShowModal = 0
           localStorage.setItem("user", JSON.stringify(resp))
-          this.isUser = JSON.parse(localStorage.getItem("user") as string) || null
+      
+         
+          
+          this.isUser = JSON.parse(localStorage.getItem("user") as string) || null;
+          location.reload();
         }
       })
 
@@ -89,6 +102,7 @@ export class HeaderComponent {
   handleLogout = () => {
     this.isUser = null
     localStorage.clear()
+    location.reload();
   }
 
 
@@ -108,4 +122,5 @@ export class HeaderComponent {
   handleModalSearch () {
     this.productList = null
   }
+  
 }
