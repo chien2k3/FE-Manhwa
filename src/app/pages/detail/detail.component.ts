@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,14 +16,14 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DetailComponent {
   closeIcon = faXmark
-
+  books: any[] = [];
   product: any = null
   user: any = null
   isShowModal: boolean = false
   cartItem: any = null
   quantity: number = 1
 
-  constructor(private productSerive: ProductService, private feedbackService: FeedbackService, private navigate: Router ,  private cartService: CartService, private orderService: OrderService, private toastr: ToastrService, private router: ActivatedRoute,  private formBuilder: FormBuilder) {
+  constructor(private productSerive: ProductService, private feedbackService: FeedbackService, private navigate: Router ,  private cartService: CartService, private orderService: OrderService, private toastr: ToastrService, private router: ActivatedRoute,  private formBuilder: FormBuilder, private categoryService: CategoryService,) {
 
   }
 
@@ -34,17 +35,36 @@ export class DetailComponent {
       if (id) {
         this.productSerive.getOne(id).subscribe(({ data }) => {
           this.product = data
+          
+          this.loadBooksByCategory(this.product.categoryId._id);
         })
       }
 
     })
 
   }
-
+  loadBooksByCategory(categoryId: string) {
+    this.categoryService.getBooksByCategory(categoryId).subscribe(
+      (data) => {
+        this.books = data.data.books;
+        console.log(this.books);
+        
+      },
+      (error) => {
+        console.error('Error fetching books by category:', error);
+      }
+    );
+  }
   handleClose() {
     this.isShowModal = false
   }
+  navigateToBookDetail(bookId: string) {
+    // Sử dụng router.navigate để điều hướng đến trang chi tiết sách với ID cụ thể
+    this.navigate.navigate(['/product/', bookId]);
 
+    // Cuộc trượt lên trên đầu trang
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   handleShowModal() {
     this.user = JSON.parse(localStorage.getItem("user") as string)?.data
     if (!this.user) {

@@ -58,6 +58,7 @@
         </button>
       </div>
     </div>
+    
     <div class="mt-[50px]">
       <h2 class="text-[20px] mb-[32px] text-[#008340]">
         Nhận xét từ khách hàng
@@ -79,13 +80,42 @@
         </form>
       </div>
     </div>
-
+    
     <div class="mt-[32px]">
       <div *ngFor="let item of product.feedbacks" class="mb-[12px]">
         <h4 class="font-[500]">Khách hàng: {{item.userId.name}}</h4>
         <p>Nội dung: {{item.content}}</p>
       </div>
     </div>
+  </div>
+  <div class="lg:col-span-3 m-10" *ngIf="books.length">
+    <h1 class="text-2xl font-bold mb-3">Sản phẩm tương tự</h1>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <li *ngFor="let relatedBooks of books" class="bg-white p-4 mb-4 rounded-md shadow-md transition-transform transform hover:scale-105">
+        <a (click)="navigateToBookDetail(relatedBooks._id)" class="group block  overflow-hidden cursor-pointer">
+          <img src="{{ relatedBooks.image }}" alt=""
+          class="h-40 w-full object-cover mb-2" />
+  
+          <div class="relative bg-white pt-3">
+            <h3 class="text-lg font-bold text-gray-700 mb-1">
+              Tên sản phẩm: {{ relatedBooks.name }}
+            </h3>
+  
+            <h3 class="text-gray-700 mb-2">
+              Mô tả: {{ relatedBooks.description }}
+            </h3>
+  
+            <p class="text-gray-900">
+              <span class="sr-only"> Regular Price </span>
+  
+              <span class="tracking-wider text-gray-900">
+                Giá: {{ relatedBooks.price }}
+              </span>
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
   </div>
   <app-footer-social></app-footer-social>
   <app-footer />

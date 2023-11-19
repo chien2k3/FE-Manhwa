@@ -27,7 +27,9 @@ export class CategoryService {
   delete(id: string): Observable<any> {
     return this.http.delete<any>(`http://localhost:8080/api/category/${id}`)
   }
-
+  getBooksByCategory(categoryId: string): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/category/${categoryId}`);
+  }
 
   private productByCategory = new BehaviorSubject<any>(null);
 
