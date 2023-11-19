@@ -1,71 +1,38 @@
-<header class="bg-white shadow">
-    <div class=" py-6">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">User</h1>
-    </div>
+<header class="bg-white shadow py-6">
+    <h1 class="text-3xl font-bold tracking-tight text-gray-900">User</h1>
   </header>
-<div class="relative overflow-x-auto">
-
-    <table class="w-full text-sm text-left text-black-500 ">
-        <thead class="text-xs text-black-700 uppercase bg-gray-5 border-b-[1px] border-[gray]">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    #
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Họ tên
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Email
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Địa chỉ
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    SĐT
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Vị trí
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Hành động
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of userList, let i = index" class="bg-white border-b-[1px] border-[gray]">
-                <td class="px-6 py-4 ">
-                    {{i + 1}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.name}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.email}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.address}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.phone}}
-                </td>
-                <td class="px-6 py-4">
-                    {{item.role}}
-                </td>
-                <td class="px-6 py-4 ">
-                    <button *ngIf="item.role !== 'admin'" (click)="handleModalCapquyen(item)" class="font-[600] text-[14px] text-blue-600 mr-[6px]">
-                        Cấp quyền
-                    </button>
-
-            
-                </td>
-            </tr>
-        </tbody>
+  
+  <div class="relative overflow-x-auto ">
+    <table class="w-full text-xl text-left text-black-500 border-collapse">
+      <thead class="text-xs text-black-700 uppercase bg-gray-5 border-b-[1px] border-[gray]">
+        <tr>
+          <th scope="col" class="px-6 py-3">#</th>
+          <th scope="col" class="px-6 py-3">Họ tên</th>
+          <th scope="col" class="px-6 py-3">Email</th>
+          <th scope="col" class="px-6 py-3">Địa chỉ</th>
+          <th scope="col" class="px-6 py-3">SĐT</th>
+          <th scope="col" class="px-6 py-3">Vị trí</th>
+          <th scope="col" class="px-6 py-3">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of userList, let i = index" class="bg-white border-b-[1px] border-[gray]">
+          <td class="px-6 py-4">{{i + 1}}</td>
+          <td class="px-6 py-4">{{item.name}}</td>
+          <td class="px-6 py-4">{{item.email}}</td>
+          <td class="px-6 py-4">{{item.address}}</td>
+          <td class="px-6 py-4">{{item.phone}}</td>
+          <td class="px-6 py-4">{{item.role}}</td>
+          <td class="px-6 py-4">
+            <button *ngIf="item.role !== 'admin'" (click)="handleModalCapquyen(item)" class="font-semibold text-[14px] text-blue-600 mr-2">
+              Cấp quyền
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-</div>
-
-
-
-
+  </div>
+  
 
 <!-- Main modal -->
 <div *ngIf="modalSetting !== 0" id="default-modal" tabindex="-1" aria-hidden="true"

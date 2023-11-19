@@ -6,64 +6,39 @@
 <div class="relative overflow-x-auto">
   <button
     (click)="handleModalCreate()"
-    class="mb-[24px] px-[12px] py-[4px] bg-blue-600 text-white rounded"
+    class="mb-4 px-4 py-2 bg-blue-600 text-white rounded"
   >
     + Thêm mới
   </button>
-  <table class="w-full text-sm text-left text-black-500">
-    <thead
-      class="text-xs text-black-700 uppercase bg-gray-5 border-b-[1px] border-[gray]"
-    >
+  <table class="w-full text-[15px] text-black">
+    <thead class="text-xs text-black uppercase bg-gray-200 border-b border-gray-300">
       <tr>
-        <th scope="col" class="px-6 py-3">Tên sản phẩm</th>
-        <th scope="col" class="px-6 py-3">Hình ảnh</th>
-        <th scope="col" class="px-6 py-3">Giá</th>
-        <th scope="col" class="px-6 py-3">Giảm giá</th>
-        <th scope="col" class="px-6 py-3">Tác giả</th>
-        <th scope="col" class="px-6 py-3 w-[300px]">Mô tả</th>
-        <th scope="col" class="px-6 py-3">Danh mục</th>
-        <th scope="col" class="px-6 py-3  w-[100px]">Hành động</th>
+        <th scope="col" class="px-6 py-3 text-xs">Tên sản phẩm</th>
+        <th scope="col" class="px-6 py-3 text-xs w-1/6">Hình ảnh</th>
+        <th scope="col" class="px-6 py-3 text-xs w-1/6">Giá</th>
+        <th scope="col" class="px-6 py-3 text-xs">Giảm giá</th>
+        <th scope="col" class="px-6 py-3 text-xs">Tác giả</th>
+        <th scope="col" class="px-6 py-3text-xs w-2/6">Mô tả</th>
+        <th scope="col" class="px-6 py-3 text-xs">Danh mục</th>
+        <th scope="col" class="px-6 py-3 text-xs w-1/6">Hành động</th>
       </tr>
     </thead>
-    <tbody>
-      <tr
-        *ngFor="let item of productsList"
-        class="bg-white border-b-[1px] border-[gray]"
-      >
+    <tbody class="text-center">
+      <tr *ngFor="let item of productsList" class="bg-white border-b border-gray-300">
+        <td class="px-6 py-4">{{ item.name }}</td>
         <td class="px-6 py-4">
-          {{ item.name }}
+          <img width="100" height="50" [src]="item.image" alt="Lỗi hình ảnh" />
         </td>
-        <td class="px-6 py-4">
-          <img
-            width="100px"
-            height="50px"
-            [src]="item.image"
-            alt="Lỗi hình ảnh"
-          />
-        </td>
-        <td class="px-6 py-4">{{ item.price | number }} đ</td>
-        <td class="px-6 py-4">{{ item.discount | number }} %</td>
-        <td class="px-6 py-4">
-          {{ item.author }}
-        </td>
-        <td class="px-6 py-4">
-          {{ item.description }}
-        </td>
-        <td class="px-6 py-4">
-          {{ item.categoryId.name }}
-        </td>
-        <td class="px-6 py-4">
-          <button
-            (click)="handleModalUpdate(item)"
-            class="font-[600] text-[14px] text-blue-600 mr-[6px]"
-          >
+        <td class="px-6 0 py-4">{{ item.price | number:'1.0-0' }} đ</td>
+        <td class="px-6 py-4">{{ item.discount | number:'1.0-0' }} %</td>
+        <td class="px-6 py-4">{{ item.author }}</td>
+        <iframe class="w-full h-30  overflow-auto" [srcdoc]="item.description"></iframe>
+        <td class="px-6 py-4">{{ item.categoryId.name }}</td>
+        <td class="px-6 py-4 ">
+          <button (click)="handleModalUpdate(item)" class="font-semibold text-blue-600 mr-2">
             Sửa
           </button>
-
-          <button
-            (click)="handleDeletelModal(item)"
-            class="font-[600] text-[14px] text-red-600"
-          >
+          <button (click)="handleDeletelModal(item)" class="font-semibold text-red-600">
             Xóa
           </button>
         </td>
@@ -71,6 +46,7 @@
     </tbody>
   </table>
 </div>
+
 
 <!-- Main modal -->
 <div

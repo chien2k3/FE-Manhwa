@@ -68,10 +68,6 @@ this.classIndex = index
 }
 
 
-handleIsshowSetting = () => {
-  this.isShowSetting = !this.isShowSetting
-}
-
 
 
 }
